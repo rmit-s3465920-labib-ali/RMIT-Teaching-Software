@@ -13,6 +13,12 @@
 
  */
 
+include('dbConfig.php');
+
+
+
+
+
 // Getting uploaded file name
 $fileName = basename($_FILES["uploadFile"]["name"]);
 
@@ -54,6 +60,8 @@ if($uploadOK == 1){
 
     echo "The file " . $fileName . " has been uploaded successfully.";
 
+
+    loadCSVTODatabase();
 }else{
 
     echo "Sorry, there was an error uploading file. Please try again.";
@@ -62,5 +70,40 @@ if($uploadOK == 1){
 
 
 
+function loadCSVTODatabase(){
 
+   // gets global variable from dbConfig.php for database connection.
+    global $db;
+
+    // TASK
+    // try to read file without saving it to the directory.
+
+   // $content = file_get_contents($_FILES["uploadFile"]["tmp_name"]);
+
+    $fileToRead = "Uploaded_Files/" . basename($_FILES["uploadFile"]["name"]);
+
+
+//    $myfile = fopen("$fileToRead", "r") or die("Unable to open file!");
+//    echo fread($myfile,filesize("$fileToRead"));
+//    fclose($myfile);
+
+
+    //open uploaded csv file with read only mode
+    $csvFile = fopen("$fileToRead", 'r');
+
+
+    //skip first line
+    fgetcsv($csvFile);
+
+    //parse data from csv file line by line
+    while(($line = fgetcsv($csvFile)) !== FALSE){
+    //insert member data into database
+
+        $db->query("INSERT INTO Marks (COURSE, SID, ASSID, SID2, ASS2_SUB, LEADER, A2_TTL, OVERALL_COMMENT, UI_ABLE_2_ADD_ATHLETE_2_GAME, UI_ABLE_2_RUN_GAME_VIA_GUI, UI_DISPLAY_RESULT, UI_DISP_ATHLETE_SCORE, UI_FILE_HANDLE, FILE_LOAD, FILE_SAVE, FILE_RELOAD, CODING_STYLE, COMMENTS_JAVADOC, GOOD_USER_UI_BONUS
+    ) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."','".$line[3]."','".$line[4]."','".$line[5]."','".$line[6]."','".$line[7]."','".$line[8]."','".$line[9]."','".$line[10]."','".$line[11]."','".$line[12]."','".$line[13]."','".$line[14]."','".$line[15]."','".$line[16]."','".$line[17]."','".$line[18]."')");
+
+
+}
+
+}
 

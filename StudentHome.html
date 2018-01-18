@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
+    <title>Student Home</title>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/style2.css" />
 </head>
+
 <body>
 
-<h1>Welcome<h1>
+<h1 align="center" style="font-size: 50px;">Welcome Student</h1>
+
+<div id="page-wrap">
+
+
+
+    <div id="contact-area">
+
+        <h2>View Assingment Results</h2>
+        </br>
+        </br>
+        </br>
+
+        <form method="post" action="StudentSearchResults.php">
+            <label for="studentID">Student ID</label>
+            <br/>
+            <input type="text" id="studentID" name="studentID">
+            <br/>
+            <label for="subject">Subject</label>
+            <br/>
+            <input type="text" id="subject" name="subject">
+            <br/>
+            <label for="subject">Assignment No.</label>
+            <br/>
+            <input type="text" id="assignmentNo" name="assignmentNo">
+            <br/>
+
+            <input type="submit" name="submit" value="View Marks" class="submit-button" />
+        </form>
+
+
+
+
+
+    </div>
+
+</div>
 
 
 
